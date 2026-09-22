@@ -15,15 +15,18 @@ namespace PEOReplayAnalyser
 
             if (result == DialogResult.OK) 
             {
-                Stream stream = FileDialogLoadReplay.OpenFile() as Stream;
-                string output = "";
+                string output = String.Empty;
 
-                while (stream.Position < stream.Length) 
-                {
-                    output += (char) stream.ReadByte();
+                try 
+                { 
+                    output = File.ReadAllText(FileDialogLoadReplay.FileName);
+                } catch 
+                { 
+                
                 }
 
-                ourReplay = Parser.Parse(output);
+
+                ourReplay = Parser.Parse(output.Replace("\r\n", "").Trim());
 
                 if (ourReplay != null) 
                 {

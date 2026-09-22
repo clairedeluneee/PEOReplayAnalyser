@@ -11,9 +11,9 @@ namespace PEOReplayAnalyser
     {
         public string SongID = String.Empty;
         public int Version;
-        public required Modifiers Gameplay_Modifiers;
+        public Modifiers? Gameplay_Modifiers;
 
-        public required List<object[]> Inputs;
+        public object[]? Inputs;
 
         public int Sicks;
         public int Goods;
@@ -45,7 +45,7 @@ namespace PEOReplayAnalyser
     {
         public bool Instakill;
         public bool OpponentPlay;
-        public double ScrollSpeedByMania;
+        public bool ScrollSpeedByMania;
         public double SongSpeed;
         public string Mania = String.Empty;
         public double HealthGain;
@@ -65,7 +65,6 @@ namespace PEOReplayAnalyser
             AllowOutOfOrderMetadataProperties = true,
             AllowTrailingCommas = true,
             IncludeFields = true,
-            IndentCharacter = ' ',
 
         };
         public static Replay? Parse(string str) 
@@ -73,9 +72,11 @@ namespace PEOReplayAnalyser
 
             try 
             {
-                return JsonSerializer.Deserialize<Replay>(str, options);
-            } catch 
-            { 
+                var ser = JsonSerializer.Deserialize<Replay>(str, options);
+                return ser;
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
                 return null;
             }
         }
