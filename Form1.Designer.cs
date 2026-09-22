@@ -33,6 +33,9 @@
             ToolstripFileLoadReplay = new ToolStripMenuItem();
             FileDialogLoadReplay = new OpenFileDialog();
             groupBox1 = new GroupBox();
+            LabelAccuracy = new Label();
+            LabelPureScore = new Label();
+            LabelHits = new Label();
             LabelJudgeHitRatio = new Label();
             LabelJudgePA = new Label();
             LabelJudgeMiss = new Label();
@@ -41,12 +44,16 @@
             LabelJudgeGood = new Label();
             LabelJudgeSick = new Label();
             groupBox2 = new GroupBox();
+            LabelGhostTaps = new Label();
             LabelKeyUps = new Label();
             LabelKeyDowns = new Label();
             groupBox3 = new GroupBox();
+            LabelInfoRHS = new Label();
+            LabelInfoLHS = new Label();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -54,7 +61,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Padding = new Padding(7, 2, 0, 2);
+            menuStrip1.Size = new Size(914, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -62,13 +70,13 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ToolstripFileLoadReplay });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(41, 20);
             fileToolStripMenuItem.Text = "File";
             // 
             // ToolstripFileLoadReplay
             // 
             ToolstripFileLoadReplay.Name = "ToolstripFileLoadReplay";
-            ToolstripFileLoadReplay.Size = new Size(135, 22);
+            ToolstripFileLoadReplay.Size = new Size(147, 22);
             ToolstripFileLoadReplay.Text = "Load replay";
             ToolstripFileLoadReplay.Click += ToolstripFileLoadReplay_Click;
             // 
@@ -78,6 +86,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(LabelAccuracy);
+            groupBox1.Controls.Add(LabelPureScore);
+            groupBox1.Controls.Add(LabelHits);
             groupBox1.Controls.Add(LabelJudgeHitRatio);
             groupBox1.Controls.Add(LabelJudgePA);
             groupBox1.Controls.Add(LabelJudgeMiss);
@@ -85,130 +96,187 @@
             groupBox1.Controls.Add(LabelJudgeBad);
             groupBox1.Controls.Add(LabelJudgeGood);
             groupBox1.Controls.Add(LabelJudgeSick);
-            groupBox1.Location = new Point(12, 27);
+            groupBox1.Location = new Point(14, 27);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(457, 119);
+            groupBox1.Size = new Size(522, 119);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Judgements";
             // 
+            // LabelAccuracy
+            // 
+            LabelAccuracy.Location = new Point(312, 63);
+            LabelAccuracy.Name = "LabelAccuracy";
+            LabelAccuracy.Size = new Size(95, 32);
+            LabelAccuracy.TabIndex = 8;
+            LabelAccuracy.Text = "Accuracy";
+            LabelAccuracy.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // LabelPureScore
+            // 
+            LabelPureScore.Location = new Point(210, 63);
+            LabelPureScore.Name = "LabelPureScore";
+            LabelPureScore.Size = new Size(95, 32);
+            LabelPureScore.TabIndex = 7;
+            LabelPureScore.Text = "Pure Score";
+            LabelPureScore.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // LabelHits
+            // 
+            LabelHits.Location = new Point(414, 63);
+            LabelHits.Name = "LabelHits";
+            LabelHits.Size = new Size(95, 32);
+            LabelHits.TabIndex = 6;
+            LabelHits.Text = "Hits";
+            LabelHits.TextAlign = ContentAlignment.TopCenter;
+            // 
             // LabelJudgeHitRatio
             // 
-            LabelJudgeHitRatio.Location = new Point(95, 63);
+            LabelJudgeHitRatio.Location = new Point(109, 63);
             LabelJudgeHitRatio.Name = "LabelJudgeHitRatio";
-            LabelJudgeHitRatio.Size = new Size(83, 32);
+            LabelJudgeHitRatio.Size = new Size(95, 32);
             LabelJudgeHitRatio.TabIndex = 5;
             LabelJudgeHitRatio.Text = "Hit Ratio";
             LabelJudgeHitRatio.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgePA
             // 
-            LabelJudgePA.Location = new Point(6, 63);
+            LabelJudgePA.Location = new Point(7, 63);
             LabelJudgePA.Name = "LabelJudgePA";
-            LabelJudgePA.Size = new Size(83, 32);
+            LabelJudgePA.Size = new Size(95, 32);
             LabelJudgePA.TabIndex = 4;
             LabelJudgePA.Text = "PA";
             LabelJudgePA.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgeMiss
             // 
-            LabelJudgeMiss.Location = new Point(362, 19);
+            LabelJudgeMiss.Location = new Point(414, 19);
             LabelJudgeMiss.Name = "LabelJudgeMiss";
-            LabelJudgeMiss.Size = new Size(83, 32);
+            LabelJudgeMiss.Size = new Size(95, 32);
             LabelJudgeMiss.TabIndex = 2;
             LabelJudgeMiss.Text = "Misses";
             LabelJudgeMiss.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgeShit
             // 
-            LabelJudgeShit.Location = new Point(273, 19);
+            LabelJudgeShit.Location = new Point(312, 19);
             LabelJudgeShit.Name = "LabelJudgeShit";
-            LabelJudgeShit.Size = new Size(83, 32);
+            LabelJudgeShit.Size = new Size(95, 32);
             LabelJudgeShit.TabIndex = 3;
             LabelJudgeShit.Text = "Shits";
             LabelJudgeShit.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgeBad
             // 
-            LabelJudgeBad.Location = new Point(184, 19);
+            LabelJudgeBad.Location = new Point(210, 19);
             LabelJudgeBad.Name = "LabelJudgeBad";
-            LabelJudgeBad.Size = new Size(83, 32);
+            LabelJudgeBad.Size = new Size(95, 32);
             LabelJudgeBad.TabIndex = 2;
             LabelJudgeBad.Text = "Bads";
             LabelJudgeBad.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgeGood
             // 
-            LabelJudgeGood.Location = new Point(95, 19);
+            LabelJudgeGood.Location = new Point(109, 19);
             LabelJudgeGood.Name = "LabelJudgeGood";
-            LabelJudgeGood.Size = new Size(83, 32);
+            LabelJudgeGood.Size = new Size(95, 32);
             LabelJudgeGood.TabIndex = 1;
             LabelJudgeGood.Text = "Goods";
             LabelJudgeGood.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelJudgeSick
             // 
-            LabelJudgeSick.Location = new Point(6, 19);
+            LabelJudgeSick.Location = new Point(7, 19);
             LabelJudgeSick.Name = "LabelJudgeSick";
-            LabelJudgeSick.Size = new Size(83, 32);
+            LabelJudgeSick.Size = new Size(95, 32);
             LabelJudgeSick.TabIndex = 0;
             LabelJudgeSick.Text = "Sicks";
             LabelJudgeSick.TextAlign = ContentAlignment.TopCenter;
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(LabelGhostTaps);
             groupBox2.Controls.Add(LabelKeyUps);
             groupBox2.Controls.Add(LabelKeyDowns);
-            groupBox2.Location = new Point(12, 152);
+            groupBox2.Location = new Point(14, 152);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(457, 128);
+            groupBox2.Size = new Size(522, 128);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Inputs";
             // 
+            // LabelGhostTaps
+            // 
+            LabelGhostTaps.Location = new Point(109, 19);
+            LabelGhostTaps.Name = "LabelGhostTaps";
+            LabelGhostTaps.Size = new Size(95, 32);
+            LabelGhostTaps.TabIndex = 8;
+            LabelGhostTaps.Text = "Ghost Taps";
+            LabelGhostTaps.TextAlign = ContentAlignment.TopCenter;
+            // 
             // LabelKeyUps
             // 
-            LabelKeyUps.Location = new Point(6, 62);
+            LabelKeyUps.Location = new Point(7, 62);
             LabelKeyUps.Name = "LabelKeyUps";
-            LabelKeyUps.Size = new Size(83, 32);
+            LabelKeyUps.Size = new Size(95, 32);
             LabelKeyUps.TabIndex = 7;
             LabelKeyUps.Text = "Keys Released";
             LabelKeyUps.TextAlign = ContentAlignment.TopCenter;
             // 
             // LabelKeyDowns
             // 
-            LabelKeyDowns.Location = new Point(6, 19);
+            LabelKeyDowns.Location = new Point(7, 19);
             LabelKeyDowns.Name = "LabelKeyDowns";
-            LabelKeyDowns.Size = new Size(83, 32);
+            LabelKeyDowns.Size = new Size(95, 32);
             LabelKeyDowns.TabIndex = 6;
             LabelKeyDowns.Text = "Keys Pressed";
             LabelKeyDowns.TextAlign = ContentAlignment.TopCenter;
             // 
             // groupBox3
             // 
-            groupBox3.Location = new Point(492, 27);
+            groupBox3.Controls.Add(LabelInfoRHS);
+            groupBox3.Controls.Add(LabelInfoLHS);
+            groupBox3.Location = new Point(562, 27);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(296, 119);
+            groupBox3.Size = new Size(338, 253);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
-            groupBox3.Text = "Song Info";
+            groupBox3.Text = "Replay Info";
+            // 
+            // LabelInfoRHS
+            // 
+            LabelInfoRHS.Location = new Point(115, 19);
+            LabelInfoRHS.Name = "LabelInfoRHS";
+            LabelInfoRHS.Size = new Size(217, 231);
+            LabelInfoRHS.TabIndex = 1;
+            LabelInfoRHS.Text = "Played by";
+            LabelInfoRHS.TextAlign = ContentAlignment.TopRight;
+            // 
+            // LabelInfoLHS
+            // 
+            LabelInfoLHS.Location = new Point(6, 19);
+            LabelInfoLHS.Name = "LabelInfoLHS";
+            LabelInfoLHS.Size = new Size(170, 231);
+            LabelInfoLHS.TabIndex = 0;
+            LabelInfoLHS.Text = "Played by";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 450);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Text = "Form1";
+            Text = "Psych Engine Online Replay Analyzer";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -231,5 +299,11 @@
         private Label LabelKeyDowns;
         private Label LabelKeyUps;
         private GroupBox groupBox3;
+        private Label LabelHits;
+        private Label LabelGhostTaps;
+        private Label LabelInfoRHS;
+        private Label LabelInfoLHS;
+        private Label LabelPureScore;
+        private Label LabelAccuracy;
     }
 }
