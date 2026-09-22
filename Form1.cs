@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace PEOReplayAnalyser
@@ -15,27 +16,32 @@ namespace PEOReplayAnalyser
             FileDialogLoadReplay.Filter = "Replay file (*.funkinreplay)|*.funkinreplay|JSON file (*.json)|*.json|All files (*.*)|*.*";
             var result = FileDialogLoadReplay.ShowDialog();
 
-            if (result == DialogResult.OK) 
+            if (result == DialogResult.OK)
             {
                 string output = String.Empty;
 
-                try 
-                { 
+                try
+                {
                     output = File.ReadAllText(FileDialogLoadReplay.FileName);
-                } catch 
-                { 
-                
+                }
+                catch
+                {
+
                 }
 
 
                 ourReplay = Parser.Parse(output.Replace("\r\n", "").Trim());
 
-                if (ourReplay != null) 
+                ToolstripFileViewLeaderboard.Enabled = ourReplay != null;
+
+                if (ourReplay != null)
                 {
-                    LabelJudgeSick.Text = "Sicks\n"  + ourReplay.Sicks;
-                    LabelJudgeGood.Text = "Goods\n"  + ourReplay.Goods;
-                    LabelJudgeBad.Text  = "Bads\n"   + ourReplay.Bads;
-                    LabelJudgeShit.Text = "Shits\n"  + ourReplay.Shits;
+                    ToolstripFileDownloadMod.Enabled = ourReplay.Mod_Url != null && ourReplay.Mod_Url != String.Empty;
+
+                    LabelJudgeSick.Text = "Sicks\n" + ourReplay.Sicks;
+                    LabelJudgeGood.Text = "Goods\n" + ourReplay.Goods;
+                    LabelJudgeBad.Text = "Bads\n" + ourReplay.Bads;
+                    LabelJudgeShit.Text = "Shits\n" + ourReplay.Shits;
                     LabelJudgeMiss.Text = "Misses\n" + ourReplay.Misses;
 
                     int pure = 0;
@@ -64,7 +70,7 @@ namespace PEOReplayAnalyser
 
                     int keyDowns = 0;
                     int keyUps = 0;
-                    if (ourReplay.Inputs != null) 
+                    if (ourReplay.Inputs != null)
                     {
                         foreach (JsonElement input in ourReplay.Inputs.Select(v => (JsonElement)v))
                         {
@@ -83,6 +89,7 @@ namespace PEOReplayAnalyser
                     LabelInfoRHS.Text = String.Empty;
 
                     info.Add("Played by", ourReplay.Player);
+                    info.Add("Played at", DateTime.UnixEpoch.AddMilliseconds(ourReplay.Beat_Time).ToString("yyyy-MM-dd HH:mm:ss"));
                     info.Add("null1", String.Empty);
                     info.Add("Song", ourReplay.Song);
                     info.Add("Difficulty", ourReplay.Difficulty);
@@ -93,7 +100,7 @@ namespace PEOReplayAnalyser
                     info.Add("Side", ourReplay.OpponentMode ? "Dad" : "Boyfriend");
 
 
-                    foreach (KeyValuePair<string, string> pair in info) 
+                    foreach (KeyValuePair<string, string> pair in info)
                     {
                         if (pair.Value == String.Empty)
                         {
@@ -107,6 +114,37 @@ namespace PEOReplayAnalyser
                     }
                 }
             }
+        }
+
+        private static void OpenURL(string url)
+        {
+            try
+            {
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch
+            {
+            }
+        }
+
+        private void ToolstripFileViewLeaderboard_Click(object sender, EventArgs e)
+        {
+            if (ourReplay == null) return;
+            string theId = ourReplay.SongID;
+            if (theId == String.Empty) theId = $"{ourReplay.Song.Replace(" ", "")}-{ourReplay.Difficulty.Replace(" ", "")}-{ourReplay.Chart_Hash}";
+            OpenURL($"https://funkin.sniro.boo/song/{theId}?strum={(ourReplay.OpponentMode ? 1 : 2)}");
+        }
+
+        private void ToolstripFileDownloadMod_Click(object sender, EventArgs e)
+        {
+            if (ourReplay == null) return;
+            if (ourReplay.Mod_Url == null || ourReplay.Mod_Url == String.Empty) return;
+            OpenURL(ourReplay.Mod_Url);
         }
     }
 }

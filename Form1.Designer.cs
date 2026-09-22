@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             ToolstripFileLoadReplay = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            ToolstripFileViewLeaderboard = new ToolStripMenuItem();
+            ToolstripFileDownloadMod = new ToolStripMenuItem();
             FileDialogLoadReplay = new OpenFileDialog();
             groupBox1 = new GroupBox();
             LabelAccuracy = new Label();
@@ -50,6 +54,7 @@
             groupBox3 = new GroupBox();
             LabelInfoRHS = new Label();
             LabelInfoLHS = new Label();
+            TooltipThing = new ToolTip(components);
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -68,7 +73,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ToolstripFileLoadReplay });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ToolstripFileLoadReplay, toolStripSeparator1, ToolstripFileViewLeaderboard, ToolstripFileDownloadMod });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(41, 20);
             fileToolStripMenuItem.Text = "File";
@@ -76,9 +81,30 @@
             // ToolstripFileLoadReplay
             // 
             ToolstripFileLoadReplay.Name = "ToolstripFileLoadReplay";
-            ToolstripFileLoadReplay.Size = new Size(147, 22);
+            ToolstripFileLoadReplay.Size = new Size(187, 22);
             ToolstripFileLoadReplay.Text = "Load replay";
             ToolstripFileLoadReplay.Click += ToolstripFileLoadReplay_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(184, 6);
+            // 
+            // ToolstripFileViewLeaderboard
+            // 
+            ToolstripFileViewLeaderboard.Enabled = false;
+            ToolstripFileViewLeaderboard.Name = "ToolstripFileViewLeaderboard";
+            ToolstripFileViewLeaderboard.Size = new Size(187, 22);
+            ToolstripFileViewLeaderboard.Text = "View leaderboard";
+            ToolstripFileViewLeaderboard.Click += ToolstripFileViewLeaderboard_Click;
+            // 
+            // ToolstripFileDownloadMod
+            // 
+            ToolstripFileDownloadMod.Enabled = false;
+            ToolstripFileDownloadMod.Name = "ToolstripFileDownloadMod";
+            ToolstripFileDownloadMod.Size = new Size(187, 22);
+            ToolstripFileDownloadMod.Text = "Download mod";
+            ToolstripFileDownloadMod.Click += ToolstripFileDownloadMod_Click;
             // 
             // FileDialogLoadReplay
             // 
@@ -120,6 +146,7 @@
             LabelPureScore.TabIndex = 7;
             LabelPureScore.Text = "Pure Score";
             LabelPureScore.TextAlign = ContentAlignment.TopCenter;
+            TooltipThing.SetToolTip(LabelPureScore, "The score you would have gotten if there was no combo bonus given.\r\nUsed during online play.");
             // 
             // LabelHits
             // 
@@ -138,6 +165,7 @@
             LabelJudgeHitRatio.TabIndex = 5;
             LabelJudgeHitRatio.Text = "Hit Ratio";
             LabelJudgeHitRatio.TextAlign = ContentAlignment.TopCenter;
+            TooltipThing.SetToolTip(LabelJudgeHitRatio, "The ratio of all hits and misses. \r\nIf this shows \"Infinity\", then there aren't any misses to begin with.");
             // 
             // LabelJudgePA
             // 
@@ -147,6 +175,7 @@
             LabelJudgePA.TabIndex = 4;
             LabelJudgePA.Text = "PA";
             LabelJudgePA.TextAlign = ContentAlignment.TopCenter;
+            TooltipThing.SetToolTip(LabelJudgePA, "Perfect Accuracy.\r\nThis is the ratio of sicks to goods. Lower means tighter hits.\r\nIf this shows \"Infinity\", then there aren't any goods to begin with.");
             // 
             // LabelJudgeMiss
             // 
@@ -305,5 +334,9 @@
         private Label LabelInfoLHS;
         private Label LabelPureScore;
         private Label LabelAccuracy;
+        private ToolTip TooltipThing;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem ToolstripFileViewLeaderboard;
+        private ToolStripMenuItem ToolstripFileDownloadMod;
     }
 }
