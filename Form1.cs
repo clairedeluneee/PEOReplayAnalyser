@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace PEOReplayAnalyser
 {
     public partial class Form1 : Form
@@ -43,6 +45,19 @@ namespace PEOReplayAnalyser
 
                     LabelJudgeHitRatio.Text = "Hit Ratio\n" + (ourReplay.Misses == 0 ? "Infinity" : (hits / ourReplay.Misses).ToString("N2"));
 
+                    int keyDowns = 0;
+                    int keyUps = 0;
+                    if (ourReplay.Inputs != null) 
+                    {
+                        foreach (JsonElement input in ourReplay.Inputs.Select(v => (JsonElement)v))
+                        {
+                            if (input[2].ToString() == "1") keyDowns++;
+                            else if (input[2].ToString() == "0") keyUps++;
+                        }
+                    }
+
+                    LabelKeyDowns.Text = "Keys Pressed\n" + keyDowns;
+                    LabelKeyUps.Text = "Keys Released\n" + keyUps;
                 }
             }
         }

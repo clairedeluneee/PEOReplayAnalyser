@@ -40,8 +40,13 @@
             LabelJudgeBad = new Label();
             LabelJudgeGood = new Label();
             LabelJudgeSick = new Label();
+            groupBox2 = new GroupBox();
+            LabelKeyUps = new Label();
+            LabelKeyDowns = new Label();
+            groupBox3 = new GroupBox();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -150,11 +155,51 @@
             LabelJudgeSick.Text = "Sicks";
             LabelJudgeSick.TextAlign = ContentAlignment.TopCenter;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(LabelKeyUps);
+            groupBox2.Controls.Add(LabelKeyDowns);
+            groupBox2.Location = new Point(12, 152);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(457, 128);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Inputs";
+            // 
+            // LabelKeyUps
+            // 
+            LabelKeyUps.Location = new Point(6, 62);
+            LabelKeyUps.Name = "LabelKeyUps";
+            LabelKeyUps.Size = new Size(83, 32);
+            LabelKeyUps.TabIndex = 7;
+            LabelKeyUps.Text = "Keys Released";
+            LabelKeyUps.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // LabelKeyDowns
+            // 
+            LabelKeyDowns.Location = new Point(6, 19);
+            LabelKeyDowns.Name = "LabelKeyDowns";
+            LabelKeyDowns.Size = new Size(83, 32);
+            LabelKeyDowns.TabIndex = 6;
+            LabelKeyDowns.Text = "Keys Pressed";
+            LabelKeyDowns.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Location = new Point(492, 27);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(296, 119);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Song Info";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -163,6 +208,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,5 +227,9 @@
         private Label LabelJudgeSick;
         private Label LabelJudgeHitRatio;
         private Label LabelJudgePA;
+        private GroupBox groupBox2;
+        private Label LabelKeyDowns;
+        private Label LabelKeyUps;
+        private GroupBox groupBox3;
     }
 }
